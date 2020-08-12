@@ -7,9 +7,8 @@ import { Component, } from '@angular/core';
 })
 export class ProgressComponent {
 
-  public progress1 = 25;
-  public progress2 = 35;
-
+  // progress[0] is not used
+  public progress = [0, 25, 85];
   getPorcentual(value: number): string {
     return `${value}%`;
   }
