@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-progress-bar-increase',
@@ -6,11 +6,16 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   styles: [
   ]
 })
-export class ProgressBarIncreaseComponent {
+export class ProgressBarIncreaseComponent implements OnInit {
+
+  ngOnInit(): void {
+    this.btnClass = `btn btn-${this.btnClass}`;
+  }
 
   // renaming progress value in parent component as 'value'
   // tslint:disable-next-line: no-input-rename
   @Input('value') progress = 50;
+  @Input() btnClass = 'primary';
   // renaming value received from user as 'value'
   // tslint:disable-next-line: no-output-rename
   @Output('value') valueFromUser: EventEmitter<number> = new EventEmitter();

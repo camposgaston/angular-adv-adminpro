@@ -4,15 +4,11 @@
             <div class="card-body">
 
                 <h4 class="card-title">Striped Progress bar </h4>
-                <div class="progress m-t-20">
-                    <div class="progress-bar bg-primary progress-bar-striped active" [style.width]="getPorcentual(progress[1])" style="height:5px;" role="progressbar">
+                <div class="progress m-t-20" *ngFor="let item of [].constructor(progress.length-1); let i = index">
+                    <div class="progress-bar progress-bar-striped active" [ngClass]="getColor(progressColors[i+1])" [style.width]="getPorcentual(progress[i+1])" style="height:5px;" role="progressbar">
                     </div>
                 </div>
 
-                <div class="progress m-t-20">
-                    <div class="progress-bar bg-info progress-bar-striped active" [style.width]="getPorcentual(progress[2])" style="height:5px;" role="progressbar">
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -20,17 +16,10 @@
 
 
 <div class="row">
-    <div class="col-6">
+    <div class="col-6" *ngFor="let item of [].constructor(progress.length-1); let i = index">
         <div class="card">
             <div class="card-body">
-                <app-progress-bar-increase (value)="progress[1]=$event" [value]='progress[1]'></app-progress-bar-increase>
-            </div>
-        </div>
-    </div>
-    <div class="col-6">
-        <div class="card">
-            <div class="card-body">
-                <app-progress-bar-increase (value)="progress[2]=$event" [value]='progress[2]'></app-progress-bar-increase>
+                <app-progress-bar-increase (value)="progress[i+1]=$event" [btnClass]="progressColors[i+1]" [value]='progress[i+1]'></app-progress-bar-increase>
             </div>
         </div>
     </div>
