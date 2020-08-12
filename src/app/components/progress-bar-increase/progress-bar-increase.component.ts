@@ -33,4 +33,16 @@ export class ProgressBarIncreaseComponent implements OnInit {
     this.progress = this.progress + value;
     this.valueFromUser.emit(this.progress);
   }
+
+  onChange(newValue: number) {
+
+    if (newValue > 100) {
+      this.progress = 100;
+    } else if (newValue <= 0) {
+      this.progress = 0;
+    } else {
+      this.progress = newValue;
+    }
+    this.valueFromUser.emit(this.progress);
+  }
 }
