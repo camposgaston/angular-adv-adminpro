@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-grouping// Modules
+// Modules
 import { AppRoutingModule } from './app-routing.module';
 import { PagesModule } from './pages/pages.module';
 
