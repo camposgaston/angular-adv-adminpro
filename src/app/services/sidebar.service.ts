@@ -15,7 +15,7 @@ export class SidebarService {
         { title: 'Charts', url: 'grafica1' }
       ]
     }
-  ]
+  ];
 
   constructor() { }
 }
