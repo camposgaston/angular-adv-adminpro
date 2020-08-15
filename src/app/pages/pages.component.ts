@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SettingsService } from '../services/settings.service';
 
-// customInitFunctions in file: ../assets/js/custom.min.js
+// declare  customInitFunctions in file: ../assets/js/custom.min.js
+// (no typescript error)
 declare function customInitFunctions();
 @Component({
   selector: 'app-pages',
