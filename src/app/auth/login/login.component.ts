@@ -15,21 +15,27 @@ export class LoginComponent {
   public formSubmited = false;
 
   public loginForm = this.fb.group({
-    email: ['camposgaston321654987@gmail.com', [Validators.required, Validators.email]],
-    password: ['123456789', [Validators.required, Validators.minLength(8)]],
-    remember: [false]
+    email: [localStorage.getItem('email') || '', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(8)]],
+    remember: [(localStorage.getItem('remember') === 'true' ? true : false)]
   });
 
   constructor(private router: Router,
-              private fb: FormBuilder,
-              private userService: UserService) { }
+    private fb: FormBuilder,
+    private userService: UserService) { }
 
 
   login(): void {
 
     this.userService.login(this.loginForm.value)
       .subscribe(resp => {
-        console.log(resp);
+        if (this.loginForm.get('remember').value) {
+          localStorage.setItem('email', this.loginForm.get('email').value);
+          localStorage.setItem('remember', 'true');
+        } else {
+          localStorage.removeItem('email');
+          localStorage.setItem('remember', 'false');
+        }
       }, (err) => {
         Swal.fire('Error', err.error.msg, 'error');
       });
