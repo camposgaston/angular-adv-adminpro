@@ -41,10 +41,11 @@ export class LoginComponent implements OnInit {
           localStorage.removeItem('email');
           localStorage.setItem('remember', 'false');
         }
+        // redirect to Dashboard
+        this.router.navigateByUrl('/');
       }, (err) => {
         Swal.fire('Error', err.error.msg, 'error');
       });
-    // this.router.navigateByUrl('/');
   }
 
 
@@ -75,12 +76,16 @@ export class LoginComponent implements OnInit {
   attachSignin(element) {
 
     this.auth2.attachClickHandler(element, {},
-      (googleUser) => {        
+      (googleUser) => {
         const googleToken = ({
           token: googleUser.getAuthResponse().id_token
         });
         // console.log(id_token);
-        this.userService.loginGoogle(googleToken).subscribe();
+        this.userService.loginGoogle(googleToken).subscribe(resp => {
+          // redirect to Dashboard
+          this.router.navigateByUrl('/');
+        });
+
 
       }, (error) => {
         alert(JSON.stringify(error, undefined, 2));
