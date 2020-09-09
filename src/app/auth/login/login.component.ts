@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 import { UserService } from '../../services/user.service';
@@ -24,7 +24,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private router: Router,
     private fb: FormBuilder,
-    private userService: UserService) { }
+    private userService: UserService,
+    private ngZone: NgZone) { }
 
   ngOnInit(): void {
     this.renderButton();
@@ -83,7 +84,9 @@ export class LoginComponent implements OnInit {
         // console.log(id_token);
         this.userService.loginGoogle(googleToken).subscribe(resp => {
           // redirect to Dashboard
-          this.router.navigateByUrl('/');
+          this.ngZone.run(() => {
+            this.router.navigateByUrl('/');
+          });
         });
 
 
