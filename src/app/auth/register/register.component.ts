@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { UserService } from '../../services/user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register',
@@ -8,6 +9,7 @@ import { UserService } from '../../services/user.service';
   styleUrls: ['./register.component.css'
   ]
 })
+
 export class RegisterComponent {
 
   public formSubmitted = false;
@@ -24,7 +26,7 @@ export class RegisterComponent {
   });
 
   constructor(private fb: FormBuilder,
-    private userService: UserService) { }
+              private userService: UserService) { }
 
   createUser() {
     this.formSubmitted = true;
@@ -39,7 +41,10 @@ export class RegisterComponent {
       .subscribe(resp => {
         console.log('user created');
         console.log(resp);
-      }, (err) => console.log(err.error.msg));
+      }, (err) => {
+        // console.log(err.error.msg)
+        Swal.fire('Error', err.error.msg, 'error');
+      });
   }
 
   notValidField(field: string): boolean {
