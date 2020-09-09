@@ -26,7 +26,17 @@ export class UserService {
   }
 
   login(formData: LoginForm) {
+    console.log('info enviada al back: ', formData);
     return this.http.post(`${base_url}/login`, formData)
+      .pipe(
+        tap((resp: any) => {
+          localStorage.setItem('token', resp.token);
+        })
+      );
+  }
+
+  loginGoogle(googleToken) {
+    return this.http.post(`${base_url}/login/google`, googleToken)
       .pipe(
         tap((resp: any) => {
           localStorage.setItem('token', resp.token);
