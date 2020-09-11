@@ -13,7 +13,7 @@ export class User {
         public uid?: string,
     ) { }
 
-    get imageUrl() {
+    get imageUrl(): string {
         if(this.img && this.img.includes('https:')){
             return this.img;
         }
