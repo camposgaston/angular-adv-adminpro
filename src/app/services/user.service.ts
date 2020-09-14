@@ -63,15 +63,16 @@ export class UserService {
         token
       }
     }).pipe(
-      tap((resp: any) => {
-
-        const { email, google, img, lastName, name, role, uid } = resp.user;
+      map((resp: any) => {
+        // default img ='' when no image in db stored
+        const { email, google, img = '', lastName, name, role, uid } = resp.user;
 
         this.user = new User(name, lastName, email, '', google, role, img, uid);
 
         // Renew Token
         localStorage.setItem('token', resp.token);
-      }), map(resp => true),
+        return true;
+      }),
       catchError(error => of(false))
     );
 
