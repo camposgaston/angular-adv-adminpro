@@ -8,21 +8,25 @@ import { PagesComponent } from './pages.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { PromisesComponent } from './promises/promises.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
+import { PerfilComponent } from './perfil/perfil.component';
 
 import { AuthGuard } from '../guards/auth.guard';
+
 
 const routes: Routes = [
     {
         path: 'dashboard',
         component: PagesComponent,
-        canActivate:[AuthGuard],
+        canActivate: [AuthGuard],
         children: [
             { path: '', component: DashboardComponent, data: { title: 'Dashboard' } },
-            { path: 'progress', component: ProgressComponent, data: { title: 'Barra de progreso' } },
+            { path: 'account-settings', component: AccountSettingsComponent, data: { title: 'Ajustes de cuenta' } },
             { path: 'grafica1', component: Grafica1Component, data: { title: 'Grafica #1' } },
+            { path: 'perfil', component: PerfilComponent, data: { title: 'Perfil de usuario' } },
+            { path: 'progress', component: ProgressComponent, data: { title: 'Barra de progreso' } },
             { path: 'promesas', component: PromisesComponent, data: { title: 'Promesas' } },
             { path: 'rxjs', component: RxjsComponent, data: { title: 'Rxjs' } },
-            { path: 'account-settings', component: AccountSettingsComponent, data: { title: 'Ajustes de cuenta' } }
+
         ]
     }
 ];
