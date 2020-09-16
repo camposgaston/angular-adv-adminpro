@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 import { UserService } from 'src/app/services/user.service';
-import { User } from '../../models/user.model';
+import { FileUploadService } from '../../services/file-upload.service';
+
 import Swal from 'sweetalert2';
 
+import { User } from '../../models/user.model';
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
@@ -14,9 +17,11 @@ export class PerfilComponent implements OnInit {
 
   public profileForm: FormGroup;
   public user: User;
+  public imageToUpload: File;
 
   constructor(private fb: FormBuilder,
-    private userService: UserService) {
+    private userService: UserService,
+    private fileUploadService: FileUploadService) {
     this.user = userService.user;
   }
 
@@ -38,6 +43,16 @@ export class PerfilComponent implements OnInit {
         this.user.email = email;
         Swal.fire('Usuario modificado', 'Se modificaron los datos de usuario', 'success');
       });
+  }
+
+  changeImage(file: File) {
+    this.imageToUpload = file;
+  }
+
+  uploadImage() {
+    this.fileUploadService
+      .updatePicture(this.imageToUpload, 'users', this.user.uid)
+      .then(img => console.log(img));
   }
 
 }
