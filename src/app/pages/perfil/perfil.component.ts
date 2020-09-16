@@ -18,6 +18,7 @@ export class PerfilComponent implements OnInit {
   public profileForm: FormGroup;
   public user: User;
   public imageToUpload: File;
+  public imgTemp: string | ArrayBuffer = null;
 
   constructor(private fb: FormBuilder,
     private userService: UserService,
@@ -47,12 +48,27 @@ export class PerfilComponent implements OnInit {
 
   changeImage(file: File) {
     this.imageToUpload = file;
+
+    if (!file) { return this.imgTemp = null; }
+
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+
+    reader.onloadend = () => {
+      this.imgTemp = reader.result;
+    }
+
   }
 
   uploadImage() {
     this.fileUploadService
       .updatePicture(this.imageToUpload, 'users', this.user.uid)
-      .then(img => console.log(img));
+      .then(
+        img => {
+          this.user.img = img;
+          Swal.fire('Usuario modificado', 'Se mofifico el avatar del usuario', 'success');
+        }
+      );
   }
 
 }
