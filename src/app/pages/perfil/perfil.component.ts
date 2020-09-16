@@ -37,12 +37,14 @@ export class PerfilComponent implements OnInit {
   updateProfile() {
     console.log(this.profileForm.value);
     this.userService.updateUserProfile(this.profileForm.value)
-      .subscribe(resp => {
+      .subscribe(() => {
         const { name, lastName, email } = this.profileForm.value;
         this.user.name = name;
         this.user.lastName = lastName;
         this.user.email = email;
         Swal.fire('Usuario modificado', 'Se modificaron los datos de usuario', 'success');
+      }, (err) => {
+        Swal.fire('Usuario no modificado', err.error.msg, 'error');
       });
   }
 
@@ -66,9 +68,11 @@ export class PerfilComponent implements OnInit {
       .then(
         img => {
           this.user.img = img;
-          Swal.fire('Usuario modificado', 'Se mofifico el avatar del usuario', 'success');
+          Swal.fire('Usuario modificado', 'Se modificó correctamente el avatar del usuario', 'success');
         }
-      );
+      ).catch(err => {
+        Swal.fire('Error', 'No se pudo modificar la imagen', 'error');
+      });
   }
 
 }
