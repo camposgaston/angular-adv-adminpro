@@ -1,13 +1,14 @@
 import { Injectable, NgZone } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
+import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
 import { tap, map, catchError } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
 
 import { RegisterForm } from '../interfaces/register-form.interface';
 import { LoginForm } from '../interfaces/login-form.interface';
-import { Observable, of } from 'rxjs';
-import { Router } from '@angular/router';
+import { GetUsers } from '../interfaces/get-users.interface';
+
 import { User } from '../models/user.model';
 
 const base_url = environment.base_url;
@@ -35,6 +36,14 @@ export class UserService {
 
   get uid(): string {
     return this.user.uid || '';
+  }
+
+  get headers() {
+    return {
+      headers: {
+        token: this.token
+      }
+    }
   }
 
   logout() {
@@ -124,4 +133,13 @@ export class UserService {
         })
       );
   }
+
+  getUsers(from: number = 0) {
+
+    // http://localhost:3000/api/users?from=5
+    const url = `${base_url}/users?from=${from}`;
+    return this.http.get<GetUsers>(url, this.headers);
+
+  }
+
 }
