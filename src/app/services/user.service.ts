@@ -138,7 +138,19 @@ export class UserService {
 
     // http://localhost:3000/api/users?from=5
     const url = `${base_url}/users?from=${from}`;
-    return this.http.get<GetUsers>(url, this.headers);
+    return this.http.get<GetUsers>(url, this.headers)
+      .pipe(
+        map(resp => {
+          const users = resp.users.map(
+            user => new User(user.name, user.lastName, user.email, '', user.google, user.role, user.img, user.uid)
+          );
+
+          return {
+            total: resp.total,
+            users
+          };
+        })
+      );
 
   }
 

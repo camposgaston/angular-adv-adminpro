@@ -31,17 +31,17 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>Avatar</th>
+                                <th class="w100">Avatar</th>
                                 <th>Email</th>
                                 <th>Nombre</th>
-                                <th>Role</th>
-                                <th>Auth</th>
-                                <th class="text-nowrap">Acciones</th>
+                                <th class="w100">Role</th>
+                                <th class="w100">Auth</th>
+                                <th class="w100 text-nowrap">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr *ngFor="let user of users">
-                                <td>xxxxx</td>
+                                <td class="text-center"><img [src]="user.imageUrl" alt="user image" class="avatar"></td>
                                 <td>{{user.email}}</td>
                                 <td>{{user.name}} {{user.lastName}}</td>
                                 <td>{{user.role}}</td>
