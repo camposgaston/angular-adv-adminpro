@@ -3,7 +3,7 @@
         <div class="card">
             <div class="card-body">
 
-                <input type="text" class="form-control" placeholder="Buscar Usuario..." />
+                <input type="text" class="form-control" placeholder="Buscar Usuario..." (keyup)="search(txtSearchTerm.value)" #txtSearchTerm />
 
             </div>
         </div>
@@ -58,8 +58,12 @@
                     </table>
                 </div>
 
-                <button (click)="changePage(-10)" class="btn btn-secondary">Anteriores</button> &nbsp;
-                <button (click)="changePage(10)" class="btn btn-secondary">Siguientes</button>
+                <div *ngIf="txtSearchTerm.value.length === 0">
+
+                    <button (click)="changePage(-10)" class="btn btn-secondary">Anteriores</button> &nbsp;
+                    <button (click)="changePage(10)" class="btn btn-secondary">Siguientes</button>
+
+                </div>
 
             </div>
         </div>

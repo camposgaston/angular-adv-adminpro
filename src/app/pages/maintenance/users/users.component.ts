@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 import { User } from 'src/app/models/user.model';
+
 import { UserService } from '../../../services/user.service';
+import { SearchService } from '../../../services/search.service';
 
 @Component({
   selector: 'app-users',
@@ -12,11 +14,15 @@ export class UsersComponent implements OnInit {
 
   public totalUsers = 0;
   public users: User[] = [];
+  public usersTemp: User[] = [];
   public from = 0;
   public loading = true;
 
 
-  constructor(private userService: UserService) { }
+  constructor(
+    private userService: UserService,
+    private searchService: SearchService
+  ) { }
 
   ngOnInit(): void {
     this.getUsers();
@@ -29,6 +35,7 @@ export class UsersComponent implements OnInit {
         this.totalUsers = total;
         if (users.length !== 0) {
           this.users = users;
+          this.usersTemp = users;
         }
         this.loading = false;
       });
@@ -43,6 +50,18 @@ export class UsersComponent implements OnInit {
     }
 
     this.getUsers();
+  }
+
+  search(term: string) {
+
+    if (term.length === 0) {
+      return this.users = this.usersTemp;
+    }
+
+    this.searchService.search('users', term)
+      .subscribe(resp => {
+        this.users = resp;
+      });
   }
 
 }
