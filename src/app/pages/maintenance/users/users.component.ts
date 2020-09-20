@@ -4,6 +4,7 @@ import { User } from 'src/app/models/user.model';
 
 import { UserService } from '../../../services/user.service';
 import { SearchService } from '../../../services/search.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-users',
@@ -62,6 +63,31 @@ export class UsersComponent implements OnInit {
       .subscribe(resp => {
         this.users = resp;
       });
+  }
+
+  deleteUser(user: User) {
+    Swal.fire({
+      title: '¿Borrar usuario?',
+      text: `Está a punto de borrar a ${user.name} ${user.lastName} email: ${user.email}`,
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Borrar Usuario!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.userService.deleteUser(user)
+          .subscribe(resp => {
+            this.getUsers();
+            Swal.fire({
+              title: 'Usuario Borrado',
+              text: `Se borro a ${user.name} ${user.lastName} email: ${user.email}`,
+              icon: 'success'
+            });
+          });
+      }
+    });
+
   }
 
 }

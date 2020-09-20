@@ -5,11 +5,13 @@ import { environment } from '../../environments/environment';
 import { tap, map, catchError } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 
+
 import { RegisterForm } from '../interfaces/register-form.interface';
 import { LoginForm } from '../interfaces/login-form.interface';
 import { GetUsers } from '../interfaces/get-users.interface';
 
 import { User } from '../models/user.model';
+
 
 const base_url = environment.base_url;
 declare const gapi: any;
@@ -152,6 +154,12 @@ export class UserService {
         })
       );
 
+  }
+
+  deleteUser(user: User) {
+
+    const url = `${base_url}/users/${user.uid}`;
+    return this.http.delete(url, this.headers);
   }
 
 }
