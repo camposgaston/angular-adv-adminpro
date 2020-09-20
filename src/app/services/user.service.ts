@@ -110,11 +110,7 @@ export class UserService {
       ...data,
       role: this.user.role
     };
-    return this.http.put(`${base_url}/users/${this.uid}`, data, {
-      headers: {
-        token: this.token
-      }
-    });
+    return this.http.put(`${base_url}/users/${this.uid}`, data, this.headers);
   }
 
   login(formData: LoginForm) {
@@ -160,6 +156,14 @@ export class UserService {
 
     const url = `${base_url}/users/${user.uid}`;
     return this.http.delete(url, this.headers);
+  }
+
+  updateUserObject(user: User) {
+    // if this user is updating himself
+    if (user.uid === this.user.uid) {
+      this.user = user;
+    }
+    return this.http.put(`${base_url}/users/${user.uid}`, user, this.headers);
   }
 
 }

@@ -98,4 +98,11 @@ export class UsersComponent implements OnInit {
 
   }
 
+  changeRol(user: User) {
+    this.userService.updateUserObject(user)
+      .subscribe(resp => {
+        console.log(resp);
+      })
+  }
+
 }
