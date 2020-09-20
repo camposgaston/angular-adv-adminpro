@@ -101,8 +101,12 @@ export class UsersComponent implements OnInit {
   changeRol(user: User) {
     this.userService.updateUserObject(user)
       .subscribe(resp => {
-        console.log(resp);
-      })
+        Swal.fire({
+          title: 'Usuario Editado',
+          text: `Se edito a ${user.name} ${user.lastName}, email: ${user.email}, rol: ${user.role}`,
+          icon: 'success'
+        });
+      });
   }
 
 }
