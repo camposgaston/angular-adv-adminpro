@@ -30,7 +30,7 @@ const routes: Routes = [
             { path: 'progress', component: ProgressComponent, data: { title: 'Barra de progreso' } },
             { path: 'promesas', component: PromisesComponent, data: { title: 'Promesas' } },
             { path: 'rxjs', component: RxjsComponent, data: { title: 'Rxjs' } },
-            
+
             // maintenance 
 
             { path: 'users', component: UsersComponent, data: { title: 'Usuarios de aplicación' } },
