@@ -40,7 +40,7 @@
 
                             <tr *ngFor="let hospital of hospitals">
                                 <td class="text-center">
-                                    <img [src]="hospital.img | imagen:'hospitals'" [alt]="hospital.name" class="avatar cursor">
+                                    <img [src]="hospital.img | image:'hospitals'" [alt]="hospital.name" class="avatar cursor">
                                 </td>
                                 <td>
                                     <input type="text" class="form-control" placeholder="Nombre de Hospital" [(ngModel)]="hospital.name">
