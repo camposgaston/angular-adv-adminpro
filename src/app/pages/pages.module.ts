@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // Modules
 import { SharedModule } from '../shared/shared.module';
 import { ComponentsModule } from '../components/components.module';
+import { PipesModule } from '../pipes/pipes.module';
 
 // Componets
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -19,6 +20,7 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { UsersComponent } from './maintenance/users/users.component';
 import { HospitalsComponent } from './maintenance/hospitals/hospitals.component';
 import { DoctorsComponent } from './maintenance/doctors/doctors.component';
+
 
 
 
@@ -42,7 +44,8 @@ import { DoctorsComponent } from './maintenance/doctors/doctors.component';
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
-    ComponentsModule
+    ComponentsModule,
+    PipesModule
   ],
   exports: [
     DashboardComponent,
