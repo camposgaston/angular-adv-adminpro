@@ -32,14 +32,29 @@ export class HospitalService {
 
   getHospitals() {
 
-    // http://localhost:3000/api/users?from=5
+    // http://localhost:3000/api/hospitals
     const url = `${base_url}/hospitals`;
     return this.http.get(url, this.headers)
       .pipe(
         map((resp: { ok: boolean, hospitals: Hospital[] }) => resp.hospitals)
       );
-
-
   }
 
+  createHospital(name: string) {
+
+    const url = `${base_url}/hospitals`;
+    return this.http.post(url, { name }, this.headers);
+  }
+
+  updateHospital(hid: string, name: string) {
+
+    const url = `${base_url}/hospitals/${hid}`;
+    return this.http.put(url, { name }, this.headers);
+  }
+
+  deleteHospital(hid: string) {
+
+    const url = `${base_url}/hospitals/${hid}`;
+    return this.http.delete(url, this.headers);
+  }
 }
