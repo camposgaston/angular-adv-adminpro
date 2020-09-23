@@ -64,7 +64,7 @@ export class HospitalsComponent implements OnInit, OnDestroy {
   }
 
   async openCreateHospitalAlert() {
-    const { value } = await Swal.fire<string>({
+    const { value = '' } = await Swal.fire<string>({
       title: 'Crear Nuevo Hospital',
       text: 'Ingrese el nombre del nuevo hospital',
       input: 'text',
