@@ -4,6 +4,7 @@ import { environment } from '../../environments/environment';
 import { map } from 'rxjs/operators';
 
 import { User } from '../models/user.model';
+import { Hospital } from '../models/hospital.model';
 
 const base_url = environment.base_url;
 
@@ -26,14 +27,20 @@ export class SearchService {
     }
   }
 
-  private transformUsers(results: any[]): User[] {
+  private transformUsers(results: any[]): any[] {
     return results.map(
       user => new User(user.name, user.lastName, user.email, '', user.google, user.role, user.img, user.uid)
     );
   }
 
+  private transformHospital(results: any[]): any[] {
+    return results.map(
+      hospital => new Hospital(hospital.name, hospital.hid, hospital.createdBy, hospital.img)
+    );
+  }
+
   search(
-    collection: 'users' | 'doctors' | 'hospitals',
+    collection: 'users' | 'doctors' | 'hospitales',
     term: string = ''
   ) {
     const url = `${base_url}/all/collection/${collection}/${term}`;
@@ -45,8 +52,11 @@ export class SearchService {
             case 'users':
               return this.transformUsers(resp.result);
 
+            case 'hospitales':
+              return this.transformHospital(resp.result);
+
             default:
-              break;
+              return [];
           }
 
         })

@@ -7,6 +7,7 @@ import { Hospital } from '../../../models/hospital.model';
 
 import { HospitalService } from '../../../services/hospital.service';
 import { ModalImageService } from '../../../services/modal-image.service';
+import { SearchService } from '../../../services/search.service';
 
 
 @Component({
@@ -18,12 +19,15 @@ import { ModalImageService } from '../../../services/modal-image.service';
 export class HospitalsComponent implements OnInit, OnDestroy {
 
   public hospitals: Hospital[] = [];
+  private hospitalsTemp: Hospital[] = [];
   public loading = true;
   private imgSubs: Subscription;
 
+
   constructor(
     private hospitalService: HospitalService,
-    private modalImageService: ModalImageService
+    private modalImageService: ModalImageService,
+    private searchService: SearchService
   ) { }
 
   ngOnDestroy(): void {
@@ -43,8 +47,12 @@ export class HospitalsComponent implements OnInit, OnDestroy {
 
     this.hospitalService.getHospitals()
       .subscribe(hospitals => {
+
+        if (hospitals.length !== 0) {
+          this.hospitals = hospitals;
+          this.hospitalsTemp = hospitals;
+        }
         this.loading = false;
-        this.hospitals = hospitals;
       });
   }
 
@@ -83,6 +91,20 @@ export class HospitalsComponent implements OnInit, OnDestroy {
 
   showModal(hospital: Hospital) {
     this.modalImageService.showModal('hospitals', hospital.hid, hospital.img);
+  }
+
+  search(term: string) {
+    this.loading = true;
+    if (term.length === 0) {
+      this.loading = false;
+      return this.hospitals = this.hospitalsTemp;
+    }
+
+    this.searchService.search('hospitales', term)
+      .subscribe(resp => {
+        this.hospitals = resp;
+        this.loading = false;
+      });
   }
 
 }

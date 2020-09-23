@@ -3,7 +3,7 @@
         <div class="card">
             <div class="card-body">
 
-                <input type="text" class="form-control" placeholder="Buscar Hospital..." />
+                <input type="text" class="form-control" placeholder="Buscar Hospital..." (keyup)="search(txtSearchTerm.value)" #txtSearchTerm />
 
             </div>
         </div>
