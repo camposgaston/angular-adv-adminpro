@@ -25,8 +25,19 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Medicos</h4>
-                <h6 class="card-subtitle">Medicos registrados en la aplicacion</h6>
+
+                <div class="row">
+                    <div class="col-8">
+                        <h4 class="card-title">Medicos ({{doctors.length}})</h4>
+                        <h6 class="card-subtitle">Medicos registrados en la aplicacion</h6>
+                    </div>
+                    <div class="col-4 text-right">
+                        <a routerLink="/dashboard/doctor/new" class="btn btn-primary">
+                            <i class="fa fa-briefcase"></i> Crear Medico
+                        </a>
+                    </div>
+                </div>
+
                 <div class="table-responsive">
                     <table class="table table-bordered">
                         <thead>
