@@ -56,6 +56,20 @@ export class DoctorsComponent implements OnInit, OnDestroy {
       });
   }
 
+  search(term: string) {
+    this.loading = true;
+    if (term.length === 0) {
+      this.loading = false;
+      return this.doctors = this.doctorsTemp;
+    }
+
+    this.searchService.search('doctors', term)
+      .subscribe((resp: Doctor[]) => {
+        this.doctors = resp;
+        this.loading = false;
+      });
+  }
+
   showModal(doctor: Doctor) {
     this.modalImageService.showModal('doctors', doctor.did, doctor.img);
   }
