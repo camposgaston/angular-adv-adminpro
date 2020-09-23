@@ -1,14 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { delay } from 'rxjs/operators';
+import Swal from 'sweetalert2';
 
 import { Doctor } from '../../../models/doctors.model';
 
 import { DoctorService } from '../../../services/doctor.service';
 import { ModalImageService } from 'src/app/services/modal-image.service';
 import { SearchService } from 'src/app/services/search.service';
-import { delay } from 'rxjs/operators';
-
-
 
 
 @Component({
@@ -72,6 +71,32 @@ export class DoctorsComponent implements OnInit, OnDestroy {
 
   showModal(doctor: Doctor) {
     this.modalImageService.showModal('doctors', doctor.did, doctor.img);
+  }
+
+  deleteDoctor(doctor: Doctor) {
+
+    Swal.fire({
+      title: '¿Borrar Medico?',
+      text: `Está a punto de borrar al medico: ${doctor.name}`,
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Borrar Medico'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.doctorService.deleteDoctor(doctor.did)
+          .subscribe(resp => {
+            this.getDoctors();
+            Swal.fire({
+              title: 'Usuario Borrado',
+              text: `Se borro el medico: ${doctor.name}`,
+              icon: 'success'
+            });
+          });
+      }
+    });
+
   }
 
 }
