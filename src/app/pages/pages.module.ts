@@ -20,6 +20,7 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { UsersComponent } from './maintenance/users/users.component';
 import { HospitalsComponent } from './maintenance/hospitals/hospitals.component';
 import { DoctorsComponent } from './maintenance/doctors/doctors.component';
+import { DoctorEditComponent } from './maintenance/doctor-edit.component';
 
 
 
@@ -37,7 +38,8 @@ import { DoctorsComponent } from './maintenance/doctors/doctors.component';
     PerfilComponent,
     UsersComponent,
     HospitalsComponent,
-    DoctorsComponent],
+    DoctorsComponent,
+    DoctorEditComponent],
   imports: [
     CommonModule,
     RouterModule,

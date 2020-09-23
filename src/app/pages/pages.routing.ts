@@ -15,6 +15,7 @@ import { AuthGuard } from '../guards/auth.guard';
 import { UsersComponent } from './maintenance/users/users.component';
 import { HospitalsComponent } from './maintenance/hospitals/hospitals.component';
 import { DoctorsComponent } from './maintenance/doctors/doctors.component';
+import { DoctorEditComponent } from './maintenance/doctor-edit.component';
 
 
 const routes: Routes = [
@@ -33,9 +34,10 @@ const routes: Routes = [
 
             // maintenance 
 
-            { path: 'users', component: UsersComponent, data: { title: 'Usuarios de aplicación' } },
-            { path: 'hospitals', component: HospitalsComponent, data: { title: 'Hospitales' } },
-            { path: 'doctors', component: DoctorsComponent, data: { title: 'Doctores' } },
+            { path: 'users', component: UsersComponent, data: { title: 'Mantenimiento de Usuarios' } },
+            { path: 'hospitals', component: HospitalsComponent, data: { title: 'Mantenimiento de Hospitales' } },
+            { path: 'doctors', component: DoctorsComponent, data: { title: 'Mantenimiento de Doctores' } },
+            { path: 'doctor/:id', component: DoctorEditComponent, data: { title: 'Mantenimiento de Doctores - Editar' } },
         ]
     }
 ];
