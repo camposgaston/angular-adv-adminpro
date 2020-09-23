@@ -101,7 +101,7 @@ export class HospitalsComponent implements OnInit, OnDestroy {
     }
 
     this.searchService.search('hospitales', term)
-      .subscribe(resp => {
+      .subscribe((resp:Hospital[]) => {
         this.hospitals = resp;
         this.loading = false;
       });

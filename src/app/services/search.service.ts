@@ -27,13 +27,13 @@ export class SearchService {
     }
   }
 
-  private transformUsers(results: any[]): any[] {
+  private transformUsers(results: User[]): User[] {
     return results.map(
       user => new User(user.name, user.lastName, user.email, '', user.google, user.role, user.img, user.uid)
     );
   }
 
-  private transformHospital(results: any[]): any[] {
+  private transformHospital(results: Hospital[]): Hospital[] {
     return results.map(
       hospital => new Hospital(hospital.name, hospital.hid, hospital.createdBy, hospital.img)
     );
