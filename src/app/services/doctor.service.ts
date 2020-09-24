@@ -39,6 +39,16 @@ export class DoctorService {
       );
   }
 
+  getDoctorById(did: string) {
+
+    // http://localhost:3000/api/doctors/{did}
+    const url = `${base_url}/doctors/${did}`;
+    return this.http.get(url, this.headers)
+      .pipe(
+        map((resp: { ok: boolean, doctor: Doctor }) => resp.doctor)
+      );
+  }
+
   createDoctor(doctor: { name: string, hospital: string }) {
 
     const url = `${base_url}/doctors`;

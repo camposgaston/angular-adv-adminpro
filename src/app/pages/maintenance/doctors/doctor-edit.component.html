@@ -3,8 +3,8 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Médico</h4>
-                <h6 class="card-subtitle" *ngIf="!create">Editar Informacion</h6>
-                <h6 class="card-subtitle" *ngIf="create">Crear nuevo Médico</h6>
+                <h6 class="card-subtitle" *ngIf="selectedDoctor">Editar Informacion</h6>
+                <h6 class="card-subtitle" *ngIf="!selectedDoctor">Crear nuevo Médico</h6>
                 <form class="form-horizontal p-t-20" [formGroup]="doctorForm" (submit)="saveDoctor()">
 
                     <div *ngIf="selectedDoctor" class="form-group row">
