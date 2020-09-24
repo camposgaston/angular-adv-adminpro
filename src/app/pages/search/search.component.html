@@ -1,1 +1,98 @@
-<p>search works!</p>
+<div class="row animated fadeIn fast">
+    <div class="col-4">
+        <div class="card">
+            <div class="card-body">
+                <h3>Usuarios</h3>
+
+                <div class="alert alert-info animated fadeIn fast" *ngIf="users.length === 0">
+                    <p class="mb-0">
+                        No hay usuariosque coincidan con el termino buscado
+                    </p>
+                </div>
+
+                <div class="table-responsive animated fadeIn fast" *ngIf="users.length > 0">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Avatar</th>
+                                <th>Nombre y Apellido</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let user of users" class="animated fadeIn fast">
+                                <td><img [src]="user.img|image:'users'" class="w75" alt=""></td>
+                                <td>{{user.name}} {{user.lastName}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="card">
+            <div class="card-body">
+                <h3>Hospitales</h3>
+
+                <div class="alert alert-info animated fadeIn fast" *ngIf="hospitals.length === 0">
+                    <p class="mb-0">
+                        No hay hospitales que coincidan con el termino buscado
+                    </p>
+                </div>
+
+                <div class="table-responsive animated fadeIn fast" *ngIf="hospitals.length > 0">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Avatar</th>
+                                <th>Nombre y Apellido</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let hospital of hospitals" class="animated fadeIn fast">
+                                <td><img [src]="hospital.img|image:'hospitals'" class="w75" alt=""></td>
+                                <td>{{hospital.name}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-4">
+        <div class="card">
+            <div class="card-body">
+                <h3>Medicos</h3>
+
+                <div class="alert alert-info animated fadeIn fast" *ngIf="doctors.length === 0">
+                    <p class="mb-0">
+                        No hay médicos que coincidan con el termino buscado
+                    </p>
+                </div>
+
+                <div class="table-responsive animated fadeIn fast" *ngIf="doctors.length > 0">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Avatar</th>
+                                <th>Nombre y Apellido</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let doctor of doctors" class="animated fadeIn fast" (click)="openDoctorPage(doctor)">
+                                <td><img [src]="doctor.img|image:'doctors'" class="w75" alt=""></td>
+                                <td>{{doctor.name}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
