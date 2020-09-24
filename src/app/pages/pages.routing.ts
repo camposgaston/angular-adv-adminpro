@@ -16,6 +16,7 @@ import { UsersComponent } from './maintenance/users/users.component';
 import { HospitalsComponent } from './maintenance/hospitals/hospitals.component';
 import { DoctorsComponent } from './maintenance/doctors/doctors.component';
 import { DoctorEditComponent } from './maintenance/doctors/doctor-edit.component';
+import { SearchComponent } from './search/search.component';
 
 
 const routes: Routes = [
@@ -31,13 +32,14 @@ const routes: Routes = [
             { path: 'progress', component: ProgressComponent, data: { title: 'Barra de progreso' } },
             { path: 'promesas', component: PromisesComponent, data: { title: 'Promesas' } },
             { path: 'rxjs', component: RxjsComponent, data: { title: 'Rxjs' } },
+            { path: 'search/:term', component: SearchComponent, data: { title: 'Busquedas' } },
 
-            // maintenance 
+            // maintenance
 
             { path: 'users', component: UsersComponent, data: { title: 'Mantenimiento de Usuarios' } },
-            { path: 'hospitals', component: HospitalsComponent, data: { title: 'Mantenimiento de Hospitales' } },
             { path: 'doctors', component: DoctorsComponent, data: { title: 'Mantenimiento de Doctores' } },
             { path: 'doctor/:did', component: DoctorEditComponent, data: { title: 'Crear o Editar Doctores' } },
+            { path: 'hospitals', component: HospitalsComponent, data: { title: 'Mantenimiento de Hospitales' } },
         ]
     }
 ];

@@ -20,4 +20,7 @@ export class HeaderComponent {
     this.userService.logout();
   }
 
+  search(term: string) {
+    console.log(term);
+  }
 }

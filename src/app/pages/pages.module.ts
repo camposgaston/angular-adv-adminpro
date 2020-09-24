@@ -21,6 +21,7 @@ import { UsersComponent } from './maintenance/users/users.component';
 import { HospitalsComponent } from './maintenance/hospitals/hospitals.component';
 import { DoctorsComponent } from './maintenance/doctors/doctors.component';
 import { DoctorEditComponent } from './maintenance/doctors/doctor-edit.component';
+import { SearchComponent } from './search/search.component';
 
 
 
@@ -39,7 +40,8 @@ import { DoctorEditComponent } from './maintenance/doctors/doctor-edit.component
     UsersComponent,
     HospitalsComponent,
     DoctorsComponent,
-    DoctorEditComponent],
+    DoctorEditComponent,
+    SearchComponent],
   imports: [
     CommonModule,
     RouterModule,
