@@ -15,10 +15,11 @@ export class SidebarComponent {
 
   menuItems: any[];
 
-  constructor(private sidebarService: SidebarService,
-    private userService: UserService) {
+  constructor(
+    public sidebarService: SidebarService,
+    private userService: UserService
+  ) {
 
-    this.menuItems = sidebarService.menu;
     this.user = userService.user;
 
     // console.log('menuItems:', this.menuItems);

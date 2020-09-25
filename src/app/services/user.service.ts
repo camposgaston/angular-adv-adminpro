@@ -49,7 +49,10 @@ export class UserService {
   }
 
   logout() {
+    
     localStorage.removeItem('token');
+    localStorage.removeItem('menu');
+    
 
     this.auth2.signOut().then(() => {
       this.ngZone.run(() => {
@@ -74,6 +77,11 @@ export class UserService {
 
   }
 
+  saveLocalStorage(token: string, menu: any) {
+    localStorage.setItem('token', token);
+    localStorage.setItem('menu', JSON.stringify(menu));
+  }
+
   tokenValidation(): Observable<boolean> {
 
     return this.http.get(`${base_url}/login/renew`, {
@@ -88,7 +96,7 @@ export class UserService {
         this.user = new User(name, lastName, email, '', google, role, img, uid);
 
         // Renew Token
-        localStorage.setItem('token', resp.token);
+        this.saveLocalStorage(resp.token, resp.menu);
         return true;
       }),
       catchError(error => of(false))
@@ -100,7 +108,7 @@ export class UserService {
     return this.http.post(`${base_url}/users`, formData)
       .pipe(
         tap((resp: any) => {
-          localStorage.setItem('token', resp.token);
+          this.saveLocalStorage(resp.token, resp.menu);
         })
       );
   }
@@ -118,7 +126,7 @@ export class UserService {
     return this.http.post(`${base_url}/login`, formData)
       .pipe(
         tap((resp: any) => {
-          localStorage.setItem('token', resp.token);
+          this.saveLocalStorage(resp.token, resp.menu);
         })
       );
   }
@@ -127,7 +135,7 @@ export class UserService {
     return this.http.post(`${base_url}/login/google`, googleToken)
       .pipe(
         tap((resp: any) => {
-          localStorage.setItem('token', resp.token);
+          this.saveLocalStorage(resp.token, resp.menu);
         })
       );
   }
