@@ -36,6 +36,10 @@ export class UserService {
     return localStorage.getItem('token') || '';
   }
 
+  get role(): 'USER_ROLE' | 'ADMIN_ROLE' {
+    return this.user.role;
+  }
+
   get uid(): string {
     return this.user.uid || '';
   }
@@ -49,10 +53,10 @@ export class UserService {
   }
 
   logout() {
-    
+
     localStorage.removeItem('token');
     localStorage.removeItem('menu');
-    
+
 
     this.auth2.signOut().then(() => {
       this.ngZone.run(() => {
