@@ -126,7 +126,6 @@ export class UserService {
   }
 
   login(formData: LoginForm) {
-    console.log('info enviada al back: ', formData);
     return this.http.post(`${base_url}/login`, formData)
       .pipe(
         tap((resp: any) => {

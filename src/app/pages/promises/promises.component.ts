@@ -12,7 +12,7 @@ export class PromisesComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUsers().then(usuarios => {
-      console.log(usuarios);
+      // console.log(usuarios);
     });
     // Promise example
     // const promise = new Promise((resolve, reject) => {
